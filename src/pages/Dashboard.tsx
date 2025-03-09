@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -6,20 +5,18 @@ import {
   Home, User, Briefcase, CalendarClock, 
   Bell, LogOut, Menu, X
 } from 'lucide-react';
-import { JobCard } from '@/components/JobCard';
-import { WorkerCard } from '@/components/WorkerCard';
-import { PaymentTracker } from '@/components/PaymentTracker';
+import JobCard from '@/components/JobCard';
+import WorkerCard from '@/components/WorkerCard';
+import PaymentTracker from '@/components/PaymentTracker';
 
 const Dashboard = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [userType, setUserType] = React.useState<'worker' | 'employer'>('worker');
   
-  // Toggle between worker and employer view (for demo purposes)
   const toggleUserType = () => {
     setUserType(prev => prev === 'worker' ? 'employer' : 'worker');
   };
 
-  // Dummy data for demonstration
   const upcomingJobs = [
     {
       id: 1,
@@ -66,7 +63,6 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-background flex">
-      {/* Sidebar (desktop) */}
       <aside className="hidden md:flex flex-col w-64 border-r bg-card">
         <div className="p-4 border-b">
           <Link to="/" className="text-xl font-semibold text-primary">
@@ -116,9 +112,7 @@ const Dashboard = () => {
         </div>
       </aside>
       
-      {/* Main content */}
       <div className="flex-grow flex flex-col">
-        {/* Mobile header */}
         <header className="md:hidden border-b p-4 bg-card">
           <div className="flex items-center justify-between">
             <Link to="/" className="text-xl font-semibold text-primary">
@@ -137,7 +131,6 @@ const Dashboard = () => {
             </button>
           </div>
           
-          {/* Mobile menu */}
           {mobileMenuOpen && (
             <nav className="mt-4 border-t pt-4">
               <div className="space-y-3">
@@ -179,7 +172,6 @@ const Dashboard = () => {
           )}
         </header>
         
-        {/* Main content */}
         <main className="flex-grow p-4 md:p-6 overflow-auto">
           <div className="mb-8">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
@@ -192,26 +184,22 @@ const Dashboard = () => {
                 </p>
               </div>
               
-              {/* For demo purposes: toggle between worker and employer views */}
               <Button onClick={toggleUserType}>
                 Switch to {userType === 'worker' ? 'Employer' : 'Worker'} View
               </Button>
             </div>
             
-            {/* Demo alert */}
             <div className="bg-amber-100 border border-amber-200 rounded-lg p-4 mb-6">
               <p className="text-amber-800 text-sm">
                 This is a demo dashboard. In a real application, users would only see either the worker or employer view based on their account type.
               </p>
             </div>
             
-            {/* Weekly payment tracker */}
             <div className="mb-8">
               <h2 className="text-xl font-semibold mb-4">Weekly Earnings</h2>
               <PaymentTracker />
             </div>
             
-            {/* Worker view */}
             {userType === 'worker' && (
               <>
                 <div className="mb-8">
@@ -233,7 +221,6 @@ const Dashboard = () => {
               </>
             )}
             
-            {/* Employer view */}
             {userType === 'employer' && (
               <>
                 <div className="mb-8">
